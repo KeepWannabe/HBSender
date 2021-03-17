@@ -52,13 +52,16 @@ $balanceinfo = $accountinfo->cash_credits;
 $rechargeinfo = $accountinfo->auto_recharge;
 
 if ($rechargeinfo == 1) {
-    echo $colors["white"]."[".$colors["green"]."✓".$colors["white"]."]———[".$colors["yellow"]." $time ".$colors["white"]."]—[".$colors["green"]." $credential[0] ".$colors["white"]."]—[ AUTO RECHARGE : ".$colors["green"]."TRUE ".$colors["white"]."]—[".$colors["purple"]." HYPE".$colors["cyan"]."BROTHER".$colors["white"]." CHECKER ]".PHP_EOL;
+    echo $colors["white"]."[".$colors["green"]."✓".$colors["white"]."]———[".$colors["yellow"]." $time ".$colors["white"]."]—[".$colors["green"]." $credential[0] ".$colors["white"]."]—[BALANCE : ".$colors["green"]."$balanceinfo ".$colors["white"]."]—[ AUTO RECHARGE : ".$colors["green"]."TRUE ".$colors["white"]."]—[".$colors["purple"]." HYPE".$colors["cyan"]."BROTHER".$colors["white"]." CHECKER ]".PHP_EOL;
     $save = @fopen("valid_apikey_plivo.txt", "a");
-    fwrite($save, $loop_check . "\n");
+    fwrite($save, $loop_check . "|[Balance : " . $balanceinfo . "]|[auto_recharge: true]" . "\n");
     fclose($save);
 }
     else {
     echo $colors["white"]."[".$colors["green"]."✓".$colors["white"]."]———[".$colors["yellow"]." $time ".$colors["white"]."]—[".$colors["green"]." $credential[0] ".$colors["white"]."]—[ AUTO RECHARGE : ".$colors["red"]."FALSE ".$colors["white"]."]—[".$colors["purple"]." HYPE".$colors["cyan"]."BROTHER".$colors["white"]." CHECKER ]".PHP_EOL;
+    $save = @fopen("valid_apikey_plivo.txt", "a");
+    fwrite($save, $loop_check . "|[Balance : " . $balanceinfo . "]|[auto_recharge: false]" . "\n");
+    fclose($save);
 }
 }
 curl_close($ch);
