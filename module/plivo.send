@@ -55,7 +55,7 @@ function pLoopSend() {
   ## LETTER ##
   ## $(((RND=RANDOM<<15|RANDOM)) ; echo ${RND: -6}) >> ITS A 6 DIGIT RANDOM NUMBER
   ## $(date +"%A, %d %B %Y") >> SHOWING DATE e.g. Wednesday, 03 March 2021
-  tLetter="<#> Company: Your OTP code is ($(((RND=RANDOM<<15|RANDOM)) ; echo ${RND: -6})). This code will expire in 10 minutes - $(date +"%A, %d %B %Y")."
+  pLetter="<#> Company: Your OTP code is ($(((RND=RANDOM<<15|RANDOM)) ; echo ${RND: -6})). This code will expire in 10 minutes - $(date +"%A, %d %B %Y")."
 
   ## CHECK BALANCE ##
   pBalance=$(curl -s --user "$pAuth:$pSecret" "https://api.plivo.com/v1/Account/$pAuth/" | jq ".cash_credits" | tr -d '"')
